@@ -36,11 +36,15 @@ const searchBook = () =>{
         .then(data => searchResults(data, data.docs));
 
         blankInputWarning.style.display = 'none';
+        wrongInputWarning.style.display = 'none';
 
         // Clear Previous Search Result 
           displayResults.textContent = '';
           resultCounts.textContent = '';
         ////////////////////////////////
+
+        // Display Spinner 
+        loadingSpinner('block');
         
       }
 };
@@ -56,10 +60,10 @@ const searchBook = () =>{
       displayResults.textContent = '';
       resultCounts.textContent = '';
      ////////////////////////////////
+     loadingSpinner('none');
 
     } 
     else {
-      
       // Clear Previous Search Result 
       displayResults.textContent = '';
       resultCounts.textContent = '';
@@ -96,5 +100,12 @@ const searchBook = () =>{
         });
 
         wrongInputWarning.style.display = 'none';
+        loadingSpinner('none');
     }
+  }
+
+
+  // Display Spinner Function 
+  const loadingSpinner = displaySpinner =>{
+    document.getElementById('spinner').style.display = displaySpinner ;
   }
